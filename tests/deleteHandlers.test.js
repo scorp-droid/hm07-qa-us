@@ -6,7 +6,9 @@ test("Status code should be 200", async () => {
   try {
     const response = await fetch(`${config.API_URL}/api/v1/kits/1`, {
       method: "DELETE",
+      
     });
+    actualStatusCode = response.status;
   } catch (error) {
     console.error(error);
   }
@@ -22,7 +24,7 @@ test("Response body should contain true response)", async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(requestBody),
+      // body: JSON.stringify(requestBody),
     });
     actualResponseBody = await response.json();
   } catch (error) {
