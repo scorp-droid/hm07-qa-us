@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-undef
-const config = require('../config');
+const config = require("../config");
 
+/* GET Test 1 checks that GETTING an existing order returns a 200 status code */
 test("Should return 200 status code", async () => {
-  //CREATE VARIABLE
   let actualStatusCode;
   try {
     const response = await fetch(`${config.API_URL}/api/v1/kits/1`);
@@ -10,13 +10,11 @@ test("Should return 200 status code", async () => {
   } catch (error) {
     console.error(error);
   }
-  //UPDATE THIS BELOW
   expect(actualStatusCode).toBe(200);
 });
 
-//UPDATE THIS BELOW
+/* GET Test 2 checks that getting an existing order returns a 'name: For picnic' key value pair in the response body */
 test("Body should contain data from kit id 1", async () => {
-  //CREATE VARIABLE
   let actualResponseBody;
   try {
     const response = await fetch(`${config.API_URL}/api/v1/kits/1`);
@@ -24,6 +22,5 @@ test("Body should contain data from kit id 1", async () => {
   } catch (error) {
     console.error(error);
   }
-  //UPDATE THIS BELOW
   expect(actualResponseBody.name).toBe("For picnic");
 });

@@ -2,16 +2,17 @@
 const config = require("../config");
 
 const requestBody = {
-  "productsList": [
+  productsList: [
     {
-      "id": 4,
-      "quantity": 2
-    }
-  ]
-}
+      id: 4,
+      quantity: 2,
+    },
+  ],
+};
 
+/* POST Test 1 checks that creating an order returns a 201 status code */
 test("Status code should be 201", async () => {
-	let actualStatusCode;
+  let actualStatusCode;
   try {
     const response = await fetch(`${config.API_URL}/api/v1/orders`, {
       method: "POST",
@@ -20,16 +21,15 @@ test("Status code should be 201", async () => {
       },
       body: JSON.stringify(requestBody),
     });
-		actualStatusCode = response.status;
+    actualStatusCode = response.status;
   } catch (error) {
     console.error(error);
   }
-	expect(actualStatusCode).toBe(201);
+  expect(actualStatusCode).toBe(201);
 });
 
-//UPDATE THIS BELOW
+/* GET Test 2 checks that creating an order returns a 'courierService: Order and Go' key value pair in the response body */
 test("Response body should contain the type of service, e.g. courier)", async () => {
-  //CREATE VARIABLE
   let actualResponseBody;
   try {
     const response = await fetch(`${config.API_URL}/api/v1/orders`, {
@@ -43,6 +43,5 @@ test("Response body should contain the type of service, e.g. courier)", async ()
   } catch (error) {
     console.error(error);
   }
-  //UPDATE THIS BELOW
   expect(actualResponseBody["courierService"]).toBe("Order and Go");
 });
